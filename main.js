@@ -1,31 +1,21 @@
 import ElementPlus from "element-plus";
 import { createApp, ref } from "vue";
-
-console.log(ref);
+import LayoutSidebar from "./layout/sidebar.js";
+import LayoutUserMenu from "./layout/user-menu.js";
+import LayoutMenus from "./layout/menus.js";
 
 const page = {
+  components: {
+    LayoutSidebar,
+    LayoutUserMenu,
+    LayoutMenus
+  },
   data() {
     return {
       isCollapse: ref(false),
     };
   },
   methods: {
-    handleOpen(key, keyPath) {
-      console.log(key, keyPath);
-    },
-    handleClose(key, keyPath) {
-      console.log(key, keyPath);
-    },
-    toggleSideBar() {
-      if (this.isCollapse) {
-        document.documentElement.style.setProperty("--sidebar-width", "210px");
-        this.isCollapse = ref(false);
-      } else {
-        document.documentElement.style.setProperty("--sidebar-width", "63px");
-        this.isCollapse = ref(true);
-      }
-      console.log(this.isCollapse);
-    },
     async logout() {
       await this.$store.dispatch("user/logout");
       this.$router.push(`/login?redirect=${this.$route.fullPath}`);
