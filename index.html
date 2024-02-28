@@ -4,19 +4,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/static/main.css">
   <link rel="stylesheet" href="https://unpkg.com/element-plus@2.5.6/dist/index.css">
-
   <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
   <script src="https://unpkg.com/element-plus@2.5.6/dist/index.full.js"></script>
   <script src="https://unpkg.com/@element-plus/icons-vue@2.3.1/dist/index.iife.min.js"></script>
+
+  <link rel="stylesheet" href="/static/index.css">
+  <script src="/static/importmap.js"></script>
   <title>Document</title>
 </head>
 
 <body>
   <div id="app" v-cloak>
     <div class="layout-sidebar">
-      <el-scrollbar wrap-class="scrollbar-wrapper">
+    <el-scrollbar wrap-class="scrollbar-wrapper">
         <el-menu active-text-color="#ffd04b" background-color="#304156" class="el-menu-vertical-demo" text-color="#fff"
           :collapse="isCollapse" @open="handleOpen" @close="handleClose">
           <el-sub-menu index="1">
@@ -69,54 +70,14 @@
       </div>
 
       <div class="main-comtent">
-        <iframe src="https://learnku.com/go" name="main" marginwidth="0" marginheight="0" frameborder="0" target="_self"
+        <iframe src="" name="main" marginwidth="0" marginheight="0" frameborder="0" target="_self"
           class="frame">
         </iframe>
       </div>
-
     </div>
   </div>
 
-  <script>
-    const { createApp, ref } = Vue
-
-    const page = {
-      data() {
-        return {
-          isCollapse: ref(false)
-        }
-      },
-      methods: {
-        handleOpen(key, keyPath) {
-          console.log(key, keyPath);
-        },
-        handleClose(key, keyPath) {
-          console.log(key, keyPath);
-        },
-        toggleSideBar() {
-          if (this.isCollapse) {
-            document.documentElement.style.setProperty('--sidebar-width', '210px');
-            this.isCollapse = ref(false);
-          } else {
-            document.documentElement.style.setProperty('--sidebar-width', '63px');
-            this.isCollapse = ref(true);
-          }
-          console.log(this.isCollapse);
-        },
-        async logout() {
-          await this.$store.dispatch('user/logout')
-          this.$router.push(`/login?redirect=${this.$route.fullPath}`)
-        }
-      }
-    };
-
-    const app = createApp(page);
-    app.use(ElementPlus);
-    for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
-      app.component(key, component)
-    }
-    app.mount("#app");
-  </script>
+  <script type="module">import '/main.js'</script>
 </body>
 
 </html>
