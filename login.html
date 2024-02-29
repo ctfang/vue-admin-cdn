@@ -28,11 +28,13 @@
         </div>
       </div>
       <div class="main-comtent">
-        <router-view />
+        <el-button @click="testhandler">test</el-button>
+        <iframe src="" name="main" target="_self" class="frame">
+        </iframe>
       </div>
     </div>
   </div>
 
-  <script type="module">import '@/main.js'</script>
+  <script type="module">import '/main.js'</script>
 </body>
 </html>

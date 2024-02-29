@@ -1,29 +1,26 @@
 import ElementPlus from "element-plus";
-import { createApp, ref } from "vue";
+import { createApp, ref, defineAsyncComponent } from "vue";
 import LayoutSidebar from "./layout/sidebar.js";
 import LayoutUserMenu from "./layout/user-menu.js";
 import LayoutMenus from "./layout/menus.js";
+import route from "./route.js";
 
-const page = {
+const app = createApp({
   components: {
     LayoutSidebar,
     LayoutUserMenu,
     LayoutMenus
   },
-  data() {
-    return {
-      isCollapse: ref(false),
-    };
-  },
-  methods: {
-    async logout() {
-      await this.$store.dispatch("user/logout");
-      this.$router.push(`/login?redirect=${this.$route.fullPath}`);
-    },
-  },
-};
+  setup() {
+    const isCollapse = ref(false)
 
-const app = createApp(page);
+    return {
+      isCollapse
+    }
+  },
+});
+
+app.use(route);
 app.use(ElementPlus);
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component);
