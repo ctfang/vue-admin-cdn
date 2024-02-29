@@ -32,17 +32,19 @@ export default {
         <div v-if="!item.hidden">
           <el-sub-menu :index="item.path" :key="item.path">
             <template #title>
-              <el-icon v-if="item.meta && item.meta.icon">
+              <el-icon>
                 <component :is="item.meta.icon"/>
               </el-icon>
               <span>{{ item.name }}</span>
             </template>
-            <el-sub-menu v-if="item.children" v-for="child in item.children" :index="child.path" :key="child.path">
-              <el-icon>
-                <component :is="child.meta.icon"/>
-              </el-icon>
-              <span>{{ child.meta.name }}</span>
-            </el-sub-menu>
+            <div v-if="item.children">
+                <el-menu-item v-for="child in item.children" :index="child.path">
+                  <el-icon>
+                    <component :is="child.meta.icon"/>
+                  </el-icon>
+                  <span>{{ child.meta.title }}</span>
+                </el-menu-item>
+            </div>
           </el-sub-menu>
         </div>
       </div>

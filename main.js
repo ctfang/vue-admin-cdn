@@ -12,10 +12,8 @@ const app = createApp({
     LayoutMenus
   },
   setup() {
-    const isCollapse = ref(false)
-
     return {
-      isCollapse
+      isCollapse: ref(false)
     }
   },
 });

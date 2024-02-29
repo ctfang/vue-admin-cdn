@@ -11,14 +11,21 @@ export const routes = [
     {
         path: '/',
         name: 'Example',
-        meta: { title: 'Example', icon: 'el-icon-s-help' },
+        meta: { title: 'Example', icon: 'help' },
         component: () => import('@/views/dashboard/index.js'),
         redirect: '/dashboard',
         children: [{
             path: 'dashboard',
             component: () => import('@/views/dashboard/index.js'),
-            meta: { title: 'Dashboard', icon: 'dashboard' }
+            meta: { title: 'Dashboard', icon: 'House' }
         }]
+    },
+
+    {
+        path: '/fda',
+        name: 'Example2',
+        meta: { title: 'Example2', icon: 'House' },
+        component: () => import('@/views/dashboard/index.js'),
     },
 ]
 
