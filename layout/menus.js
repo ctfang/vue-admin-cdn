@@ -1,11 +1,15 @@
 export default {
     props: ['isCollapse'],
+    setup(props) {
+        console.log(props)
+    },
     computed: {
         routes() {
             return this.$router.options.routes
         },
     },
-    template: `<el-scrollbar wrap-class="scrollbar-wrapper">
+    template: `
+<el-scrollbar wrap-class="scrollbar-wrapper">
     <el-menu
         active-text-color="#ffd04b"
         background-color="#304156"
@@ -22,7 +26,7 @@ export default {
               <el-icon>
                 <component :is="item.meta.icon"/>
               </el-icon>
-              <span>{{ item.name }}</span>
+              <span v-if="!isCollapse">{{ item.name }}</span>
             </template>
             <div v-if="item.children">
                 <el-menu-item v-for="child in item.children" :index="child.path" :index="child.path">
