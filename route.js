@@ -4,7 +4,7 @@ import {createRouter, createWebHashHistory} from 'vue-router'
 export const routes = [
     {
         path: '/404',
-        component: () => import('@/views/404'),
+        component: () => import('@/views/404.js'),
         hidden: true,
     },
 
@@ -16,7 +16,7 @@ export const routes = [
         redirect: '/dashboard',
         children: [{
             path: 'dashboard',
-            component: () => import('@/views/dashboard/index.js'),
+            component: () => import('@/views/404.js'),
             meta: { title: 'Dashboard', icon: 'House' }
         }]
     },
